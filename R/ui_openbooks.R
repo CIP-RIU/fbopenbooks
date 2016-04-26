@@ -29,6 +29,7 @@ fbopenbooks_ui <- function(type = "tab", title = "Open Fieldbooks", name = "open
                                               
                                               column(6, DT::dataTableOutput('x1')),
                                               #column(8, shiny::textOutput("row_print"))
+                                              column(8, shiny::actionButton("refresh", "Refresh Sheet")),
                                               column(8, shiny::actionButton(inputId = "fbopen_file" ,label = "Open Book"))
                                               
                                             )#, end fluidow
@@ -41,7 +42,12 @@ fbopenbooks_ui <- function(type = "tab", title = "Open Fieldbooks", name = "open
                                    )#,#end tab Panel "CHECK"
                                    
                             )
-                          )
+                          ),
+                          br(),
+                          br(),
+                          br()
+
+
   )#End data_processing tabItem
   
 }

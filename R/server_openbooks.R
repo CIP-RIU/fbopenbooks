@@ -9,12 +9,19 @@
 
 fbopenbooks_server <- function(input,output,session, values){
   
-  fb_file_list <- shiny::reactive({
-    #fb_file_list <- list.files(getwd(),full.names = TRUE)
-    fb_file_list <- list.files(getwd(), full.names = TRUE, pattern = ".xlsx")
-    files <- data.frame(fb_file_list)
-    names(files) <- "Files_Direction"
-    files
+   fb_file_list <- shiny::reactive({
+     
+     input$refresh
+     #fb_file_list <- list.files(getwd(),full.names = TRUE)
+     fb_file_list <- list.files(getwd(), full.names = TRUE, pattern = ".xlsx")
+     ignore_temps <- grepl(pattern = "~\\$",x = fb_file_list)
+     
+     fb_file_list <- fb_file_list[!ignore_temps]
+     #fb_file_list <- basename(fb_file_list)
+       
+     files <- data.frame(fb_file_list)
+     names(files) <- "Files_Direction"
+     files
   })
   
   output$x1  <-  DT::renderDataTable(
@@ -27,7 +34,8 @@ fbopenbooks_server <- function(input,output,session, values){
 #     #info  =  input$x1_cell_clicked
 #     cars[s,"speed"]
 #   })
-  
+
+    
   shiny::observeEvent(input$fbopen_file, {
     
     shiny::withProgress(message = "Opening Fieldbook...",value= 0,
