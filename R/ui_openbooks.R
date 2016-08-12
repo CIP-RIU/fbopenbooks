@@ -14,25 +14,29 @@ fbopenbooks_ui <- function(type = "tab", title = "Open Fieldbooks", name = "open
                           
                           box(
                             title = "Open Fieldbooks", status = "primary", solidHeader = TRUE,
-                            collapsible = TRUE, width = NULL,
+                            collapsible = TRUE, width = 12,
                             #tabsetPanel(
-                            tabBox(width = 12,
+                            tabBox(width = 10,
                                    tabPanel("Check", #begin tabset "CHECK"
                                             fluidRow( 
-                                              #shinyFiles::shinyFilesButton('file', 'File select', 'Please select a file',FALSE),
-                                              #shiny::actionButton("calculate", "Calculate",icon("play-circle-o")),
-                                              #HTML('<div style="float: right; margin: 0 5px 5px 10px;">'),
-                                              #shiny::actionLink('exportButton', 'Download data'),
-                                              #HTML('</div>'),
-                                              #box(rHandsontableOutput("hot_btable",height = "1400px",width = "1000px"),
-                                              #    height = "3400px",width ="2400px")
-                                              
-                                              column(6, DT::dataTableOutput('x1')),
+                                              #
+                                             column(width = 12, DT::dataTableOutput('x1'))#,
                                               #column(8, shiny::textOutput("row_print"))
-                                              column(8, shiny::actionButton("refresh", "Refresh Sheet")),
-                                              column(8, shiny::actionButton(inputId = "fbopen_file" ,label = "Open Book"))
+                                              #column(8, shiny::actionButton("refresh", "Refresh Sheet")),
+                                              #column(8, shiny::actionButton(inputId = "fbopen_file" ,label = "Open Book"))
                                               
-                                            )#, end fluidow
+                                            ), #end fluidow
+                                            
+                                            fluidRow(
+                                               HTML('<div style="float: right; margin: 0 15px 18px 0px;">'),
+                                               shiny::actionButton("refresh", "Refresh Table", icon("refresh"), 
+                                                                   style="color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                                                                   ),
+                                               shiny::actionButton(inputId = "fbopen_file" ,label = "Open Book", icon("file"),
+                                                                   style="color: #fff; background-color: #51a351; border-color: #51a351"
+                                                                   ),
+                                            HTML('</div>')
+                                            )#,
                                             
 #                                             tags$style(type='text/css', "#file { width:150px; margin-top: 25px;}"),
 #                                             tags$style(HTML('#file {background-color:#0099cc; color: #ffffff}')),  

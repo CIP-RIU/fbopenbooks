@@ -9,9 +9,9 @@
 
 fbopenbooks_server <- function(input,output,session, values){
   
-   fb_file_list <- shiny::reactive({
+   #fb_file_list <- shiny::reactive({
+     tablita <- function(){#
      
-     input$refresh
      #fb_file_list <- list.files(getwd(),full.names = TRUE)
      fb_file_list <- list.files(getwd(), full.names = TRUE, pattern = ".xlsx")
      ignore_temps <- grepl(pattern = "~\\$",x = fb_file_list)
@@ -22,11 +22,27 @@ fbopenbooks_server <- function(input,output,session, values){
      files <- data.frame(fb_file_list)
      names(files) <- "Files_Direction"
      files
-  })
+     }#new
+ # })
   
-  output$x1  <-  DT::renderDataTable(
-    fb_file_list(), options = list(), selection = c("single"),server=FALSE
-  )
+output$x1  <-  DT::renderDataTable({
+ # output$x1  <-  DT::renderDataTable({
+
+ input$refresh
+ #isolate( 
+ 
+   #fb_file_list(), options = list(), selection = c("single"),server=FALSE
+ #  DT::datatable(fb_file_list(),selection = c("single"),options = list()) 
+   #)  
+     
+     tablita <- tablita()
+      #DT::datatable(fb_file_list(),selection = c("single"))     
+     DT::datatable(tablita,selection = c("single"))
+  # }) 
+  })
+
+
+
   
 #   output$row_print = renderPrint({
 #     s =  input$x1_rows_selected
@@ -40,13 +56,25 @@ fbopenbooks_server <- function(input,output,session, values){
     
     shiny::withProgress(message = "Opening Fieldbook...",value= 0,
                  {
-    index  <-   input$x1_rows_selected
+                   try({ #begin of Try
+                                  
+    index  <- input$x1_rows_selected
+    n_pos <- length(index) #You select the last row selected. By default it will storage all positions
+    index <- index[n_pos] 
+    
     index <- as.numeric(index)
-    table_files <- fb_file_list()#assign the reactive table
+    print(index)
+    
+    table_files <- tablita()
+    
+    #table_files <- fb_file_list()#assign the reactive table
     table_files <- table_files[index,"Files_Direction"]
     selected_file <- as.character(table_files)
     print(selected_file)
     shell.exec(selected_file)
+    
+    
+    })# end of Try
     })
     
 })
