@@ -13,7 +13,14 @@ fbopenbooks_server <- function(input,output,session, values){
      tablita <- function(){#
      
      #fb_file_list <- list.files(getwd(),full.names = TRUE)
-     fb_file_list <- list.files(getwd(), full.names = TRUE, pattern = ".xlsx")
+     
+    #AFTER FBGLOBAL  
+     path <- fbglobal::get_base_dir()
+     #path <- paste(path)
+     fb_file_list <- list.files(path=path, full.names = TRUE, pattern = ".xlsx")  
+       
+     #BEFORE FBGLOBAL  
+     #fb_file_list <- list.files(getwd(), full.names = TRUE, pattern = ".xlsx")
      ignore_temps <- grepl(pattern = "~\\$",x = fb_file_list)
      
      fb_file_list <- fb_file_list[!ignore_temps]
