@@ -7,17 +7,17 @@
 #' @export
 #' 
 
-fbopenbooks_ui <- function(type = "tab", title = "Open Fieldbooks", name = "open_fieldbooks"){
+fbopenbooks_ui <- function(type = "tab", title = "List of Fieldbooks", name = "open_fieldbooks"){
   
   shinydashboard::tabItem(tabName = name,
                           h2(title),   
                           
                           box(
-                            title = "Open Fieldbooks", status = "primary", solidHeader = TRUE,
+                            title = "List of Fieldbooks", status = "primary", solidHeader = TRUE,
                             collapsible = TRUE, width = 12,
                             #tabsetPanel(
                             tabBox(width = 10,
-                                   tabPanel("Check", #begin tabset "CHECK"
+                                   tabPanel("", #begin tabset "CHECK"
                                             fluidRow( 
                                               #
                                              column(width = 12, DT::dataTableOutput('x1'))#,
