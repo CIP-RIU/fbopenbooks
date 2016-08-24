@@ -13,7 +13,7 @@ fbopenbooks_ui <- function(type = "tab", title = "List of Fieldbooks", name = "o
                           h2(title),   
                           
                           box(
-                            title = "Files", status = "primary", solidHeader = TRUE,
+                            title = "", status = "primary", solidHeader = TRUE,
                             collapsible = TRUE, width = 12,
                             #tabsetPanel(
                             tabBox(width = 10,

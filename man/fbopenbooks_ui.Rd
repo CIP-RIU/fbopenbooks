@@ -5,7 +5,7 @@
 \title{UI for open books in HiDAP
 Returns user friendly ui}
 \usage{
-fbopenbooks_ui(type = "tab", title = "Open Fieldbooks",
+fbopenbooks_ui(type = "tab", title = "List of Fieldbooks",
   name = "open_fieldbooks")
 }
 \arguments{
