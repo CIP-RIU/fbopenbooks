@@ -13,11 +13,11 @@ fbopenbooks_ui <- function(type = "tab", title = "List of Fieldbooks", name = "o
                           h2(title),   
                           
                           box(
-                            title = "List of Fieldbooks", status = "primary", solidHeader = TRUE,
+                            title = "Files", status = "primary", solidHeader = TRUE,
                             collapsible = TRUE, width = 12,
                             #tabsetPanel(
                             tabBox(width = 10,
-                                   tabPanel("", #begin tabset "CHECK"
+                                   tabPanel("Table List", #begin tabset "CHECK"
                                             fluidRow( 
                                               #
                                              column(width = 12, DT::dataTableOutput('x1'))#,
