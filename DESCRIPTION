@@ -1,6 +1,6 @@
 Package: fbopenbooks
 Title: The Fieldbook Manager for HiDAP
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: person("Omar Benites", "Omar", email = "obacc07@gmail.com", role = c("aut", "cre"))
 Description: The fbopenbooks package provides a fieldbook list manager to locate and open all the fieldbook created by HiDAP.
 Depends:
